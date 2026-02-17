@@ -9,12 +9,14 @@ pipeline {
             parallel {
                 stage('Unit tests') {
                     steps {
+                        sh 'chmod +x mvnw'
                         sh './mvnw test -DtestGroups=unit'
                     }
                 }
                 stage('Integration tests') {
                     when { expression { return params.RUN_INTEGRATION_TESTS } }
                     steps {
+                        sh 'chmod +x mvnw'
                         sh './mvnw test -DtestGroups=integration'
                     }
                 }
